@@ -47,9 +47,7 @@ void TDebug::writeLogToFile(QString log)
     }
 
     if (TDebug::logFile.isOpen()) {
-//        const char *msg = infos.toStdString().c_str();
-        char *msg = new char[strlen(infos.toStdString().c_str() + 1)];
-        strcpy(msg,infos.toStdString().c_str());
+        const char *msg = infos.toStdString().c_str();
         TDebug::logFile.write(msg, qstrlen(msg));
     } else {
         TDebug::logOut << infos;

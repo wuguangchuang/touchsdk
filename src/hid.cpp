@@ -473,7 +473,6 @@ touch_device *HID_API_EXPORT HID_API_CALL hid_find_touchdevice(int *count)
         //wprintf(L"HandleName: %s\n", device_interface_detail_data->DevicePath);
 
         // Open a handle to the device
-
         write_handle = open_device(device_interface_detail_data->DevicePath);
 
         // Check validity of write_handle.
@@ -566,7 +565,7 @@ touch_device *HID_API_EXPORT HID_API_CALL hid_find_touchdevice(int *count)
             else
                 cur_dev->path = NULL;
 
-//            /* Serial Number */
+            /* Serial Number */
 //            res = HidD_GetSerialNumberString(write_handle, wstr, sizeof(wstr));
 //            wstr[WSTR_LEN-1] = 0x0000;
 //            if (res) {

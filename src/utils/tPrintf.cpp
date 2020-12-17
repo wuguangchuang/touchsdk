@@ -47,9 +47,7 @@ void TPrintf::writeLogToFile(QString log)
     }
 
     if (TPrintf::logFile.isOpen()) {
-//        const char *msg = infos.toStdString().c_str();
-        char *msg = new char[strlen(infos.toStdString().c_str() + 1)];
-        strcpy(msg,infos.toStdString().c_str());
+        const char *msg = infos.toStdString().c_str();
         TPrintf::logFile.write(msg, qstrlen(msg));
     } else {
         TPrintf::logOut << infos;
