@@ -958,7 +958,12 @@ void TouchManager::doTest()
     buffer[0] = ONBOARD_TEST_SWITCH_START;
     buffer[1] = ONBOARD_TEST_MODE_CLOSE;
     qToLittleEndian(testThread->standardType, &(buffer[2]));
-    isSupport = setOnboardTeststatus(mTestDevice,buffer);
+//    if(mTestListener->getSwitchOnboardTest())
+    if(mSwitchOnboardtest)
+    {
+        isSupport = setOnboardTeststatus(mTestDevice,buffer);
+    }
+
     if(isSupport)
     {
         if(!mtestStop)
@@ -995,14 +1000,18 @@ test_retry:
     }
     //======================================================
     //======================================================
+
     //启动板载测试无触摸模式
+    if(isSupport)
+    {
+        buffer[0] = ONBOARD_TEST_SWITCH_START;
+        buffer[1] = ONBOARD_TEST_MODE_NOTOUCH;
+        qToLittleEndian(testThread->standardType, &(buffer[2]));
+        isSupport = setOnboardTeststatus(mTestDevice,buffer);
 
-    buffer[0] = ONBOARD_TEST_SWITCH_START;
-    buffer[1] = ONBOARD_TEST_MODE_NOTOUCH;
-    qToLittleEndian(testThread->standardType, &(buffer[2]));
-    isSupport = setOnboardTeststatus(mTestDevice,buffer);
+        TDEBUG("onboard test issupport = %d",isSupport);
+    }
 
-    TDEBUG("onboard test issupport = %d",isSupport);
     //获取无触摸测试项个数
     if(isSupport)
     {
@@ -2843,6 +2852,7 @@ int TouchManager::setCoordsMode(touch_device *device, qint8 channel, qint8 mode)
     if (!isCommandReplySuccessful(&require, &reply, ret, __func__)) {
         return -2;
     }
+    TDEBUG("设置坐标模式成功");
     return 0;
 }
 
@@ -3268,16 +3278,22 @@ bool TouchManager::isSameDeviceInPort(touch_device *a, touch_device *b)
 
 bool TouchManager::mShowTestData = false;
 bool TouchManager::mIgnoreFailedTestItem = false;
-bool TouchManager::mIgnoreFailedOnboardTestItem = false;
+//bool TouchManager::mIgnoreFailedOnboardTestItem = false;
+bool TouchManager::mSwitchOnboardtest = false;
 void TouchManager::setIgnoreFailedTestItem(bool ignore)
 {
     mIgnoreFailedTestItem = ignore;
 }
 
-void TouchManager::setIgnoreFailedOnboardTestItem(bool ignore)
+void TouchManager::setSwitchOnboardTest(bool switchOnboardTest)
 {
-    mIgnoreFailedOnboardTestItem = ignore;
+    mSwitchOnboardtest = switchOnboardTest;
 }
+
+//void TouchManager::setIgnoreFailedOnboardTestItem(bool ignore)
+//{
+//    mIgnoreFailedOnboardTestItem = ignore;
+//}
 void TouchManager::setShowTestData(bool show)
 {
     mShowTestData = show;

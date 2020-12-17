@@ -90,6 +90,7 @@ public:
         virtual void refreshOnboardTestData(QVariantMap map) = 0;
         virtual void showOnboardFailItem(QString message) = 0;
         virtual void showFirewareInfo(int type) = 0;
+        virtual int getSwitchOnboardTest() = 0;
     };
     class UpgradeListener {
     public:
@@ -307,7 +308,8 @@ public:
     //config
     TOUCHSHARED_EXPORT static void setShowTestData(bool show);
     TOUCHSHARED_EXPORT static void setIgnoreFailedTestItem(bool ignore);
-    TOUCHSHARED_EXPORT static void setIgnoreFailedOnboardTestItem(bool ignore);
+//    TOUCHSHARED_EXPORT static void setIgnoreFailedOnboardTestItem(bool ignore);
+    TOUCHSHARED_EXPORT static void setSwitchOnboardTest(bool switchOnboardTest);
     TOUCHSHARED_EXPORT void setHutplugCheckInterval(unsigned int interval);
 
     TOUCHSHARED_EXPORT static void test(void);
@@ -372,12 +374,14 @@ private:
     // for old signal data, UNT signal
     UntData *untDataBuf;
 
-
+public:
     // config
     static bool mShowTestData;
     static bool mIgnoreFailedTestItem;
-    static bool mIgnoreFailedOnboardTestItem;
+//    static bool mIgnoreFailedOnboardTestItem;
+    static bool mSwitchOnboardtest;
 public:
+
     Trans *translator;
     HotplugThread mHotplugThread;
     CommandThread *commandThread;

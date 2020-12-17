@@ -473,6 +473,7 @@ touch_device *HID_API_EXPORT HID_API_CALL hid_find_touchdevice(int *count)
         //wprintf(L"HandleName: %s\n", device_interface_detail_data->DevicePath);
 
         // Open a handle to the device
+
         write_handle = open_device(device_interface_detail_data->DevicePath);
 
         // Check validity of write_handle.
@@ -565,26 +566,26 @@ touch_device *HID_API_EXPORT HID_API_CALL hid_find_touchdevice(int *count)
             else
                 cur_dev->path = NULL;
 
-            /* Serial Number */
-            res = HidD_GetSerialNumberString(write_handle, wstr, sizeof(wstr));
-            wstr[WSTR_LEN-1] = 0x0000;
-            if (res) {
-                cur_dev->serial_number = _wcsdup(wstr);
-            }
+//            /* Serial Number */
+//            res = HidD_GetSerialNumberString(write_handle, wstr, sizeof(wstr));
+//            wstr[WSTR_LEN-1] = 0x0000;
+//            if (res) {
+//                cur_dev->serial_number = _wcsdup(wstr);
+//            }
 
-            /* Manufacturer String */
-            res = HidD_GetManufacturerString(write_handle, wstr, sizeof(wstr));
-            wstr[WSTR_LEN-1] = 0x0000;
-            if (res) {
-                cur_dev->manufacturer_string = _wcsdup(wstr);
-            }
+//            /* Manufacturer String */
+//            res = HidD_GetManufacturerString(write_handle, wstr, sizeof(wstr));
+//            wstr[WSTR_LEN-1] = 0x0000;
+//            if (res) {
+//                cur_dev->manufacturer_string = _wcsdup(wstr);
+//            }
 
-            /* Product String */
-            res = HidD_GetProductString(write_handle, wstr, sizeof(wstr));
-            wstr[WSTR_LEN-1] = 0x0000;
-            if (res) {
-                cur_dev->product_string = _wcsdup(wstr);
-            }
+//            /* Product String */
+//            res = HidD_GetProductString(write_handle, wstr, sizeof(wstr));
+//            wstr[WSTR_LEN-1] = 0x0000;
+//            if (res) {
+//                cur_dev->product_string = _wcsdup(wstr);
+//            }
 
             /* VID/PID */
             cur_dev->vendor_id = attrib.VendorID;
