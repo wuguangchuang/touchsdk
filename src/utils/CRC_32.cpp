@@ -29,13 +29,13 @@ unsigned long CCRC_32::Calculate(const unsigned char * pData, unsigned int dataS
 {
 	// Calculate the CRC
 	unsigned long CRC = m_CrcValue;
-    TDEBUG("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    TDEBUG("pData[0] = %d,pData[%d] = %d",*pData,dataSize,pData[dataSize-1]);
-    TDEBUG("pData[1] = %d,pData[2] = %d",pData[1],pData[2]);
-    TDEBUG("pData[3] = %d,pData[4] = %d",pData[3],pData[4]);
-    TDEBUG("pData[5] = %d,pData[6] = %d",pData[5],pData[6]);
-    TDEBUG("pData[7] = %d,pData[8] = %d",pData[7],pData[8]);
-    TDEBUG("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//    TDEBUG("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//    TDEBUG("pData[0] = %d,pData[%d] = %d",*pData,dataSize,pData[dataSize-1]);
+//    TDEBUG("pData[1] = %d,pData[2] = %d",pData[1],pData[2]);
+//    TDEBUG("pData[3] = %d,pData[4] = %d",pData[3],pData[4]);
+//    TDEBUG("pData[5] = %d,pData[6] = %d",pData[5],pData[6]);
+//    TDEBUG("pData[7] = %d,pData[8] = %d",pData[7],pData[8]);
+//    TDEBUG("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
     int index = 0;
 	while (dataSize--)
