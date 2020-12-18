@@ -1135,6 +1135,32 @@ onboard_test_retry:
 
     //======================================================
     //======================================================
+    if(isSupport && !continueOnboardTest && !finalResult)
+    {
+        isSupport = false;
+        for(touchIndex = 0;touchIndex < onboardTestItemCount && !mtestStop;touchIndex++)
+        {
+            testItem = onboardTestItem[touchIndex];
+            if(mIgnoreFailedTestItem)
+            {
+                onboardTestResult = touchOnboardTest(mTestDevice,testItem,&onboardTestDataResult,testThread->standardType);
+            }
+            else
+            {
+                onboardTestResult = touchOnboardTest(mTestDevice,testItem,&onboardTestDataResult,testThread->standardType);
+                if(!onboardTestResult)
+                {
+                     goto do_test_end;
+                }
+
+            }
+
+        }
+        //将板载测试数据发送给qml
+        onboardTestData = onboardTestDataResult;
+        sendOnboardTestDataToQML(&onboardTestData);
+
+    }
     //切换到有触摸测试状态
     if(isSupport)
     {
@@ -3287,6 +3313,7 @@ bool TouchManager::mShowTestData = false;
 bool TouchManager::mIgnoreFailedTestItem = false;
 bool TouchManager::mIgnoreFailedOnboardTestItem = false;
 bool TouchManager::switchOnboardTest = false;
+bool TouchManager::continueOnboardTest = false;
 void TouchManager::setIgnoreFailedTestItem(bool ignore)
 {
     mIgnoreFailedTestItem = ignore;
@@ -3300,6 +3327,11 @@ void TouchManager::setIgnoreFailedOnboardTestItem(bool ignore)
 void TouchManager::setSwitchOnboardTest(bool enable)
 {
     switchOnboardTest = enable;
+}
+
+void TouchManager::setContinueOnboardTest(bool _continueOnboardTest)
+{
+    continueOnboardTest = _continueOnboardTest;
 }
 void TouchManager::setShowTestData(bool show)
 {

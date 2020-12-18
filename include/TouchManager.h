@@ -309,6 +309,7 @@ public:
     TOUCHSHARED_EXPORT static void setIgnoreFailedTestItem(bool ignore);
     TOUCHSHARED_EXPORT static void setIgnoreFailedOnboardTestItem(bool ignore);
     TOUCHSHARED_EXPORT static void setSwitchOnboardTest(bool enable);
+    TOUCHSHARED_EXPORT static void setContinueOnboardTest(bool _continueOnboardTest);
     TOUCHSHARED_EXPORT void setHutplugCheckInterval(unsigned int interval);
 
     TOUCHSHARED_EXPORT static void test(void);
@@ -379,6 +380,7 @@ private:
     static bool mIgnoreFailedTestItem;
     static bool mIgnoreFailedOnboardTestItem;
     static bool switchOnboardTest;
+    static bool continueOnboardTest;
 public:
     Trans *translator;
     HotplugThread mHotplugThread;
